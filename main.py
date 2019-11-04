@@ -7,7 +7,7 @@ from torch import nn
 
 def main():
     data = load_dataset()
-    net = DCNN()
+    net = DCNN().to(device)
 
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
