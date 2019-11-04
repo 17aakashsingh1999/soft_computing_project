@@ -45,7 +45,9 @@ def train_DCNN_partial(net, trainloader, testloader, optimizer, criterion, n_epo
 
 
 def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+    print('inside trainer')
     for epoch in range(n_epochs):  # loop over the dataset multiple times
+        print('epoch', epoch)
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
@@ -61,6 +63,8 @@ def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_ep
             optimizer.step()
 
             # print statistics
+            print('[%d, %5d] loss: %.3f' %
+                    (epoch + 1, i + 1, running_loss / 2000))
             running_loss += loss.item()
             if i % 2000 == 1999:    # print every 2000 mini-batches
                 print('[%d, %5d] loss: %.3f' %
