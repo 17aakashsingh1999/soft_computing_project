@@ -1,7 +1,7 @@
 import torch
 from models import DCNN, SDL
 
-from utils import create_sdl_dataset
+from utils import create_sdl_dataset, device
 
 def train_DCNN_partial(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
     net.freeze_resnet()
@@ -52,6 +52,8 @@ def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_ep
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs, labels = data
+            inputs = inputs.to(device)
+            labels = labels.to(device)
 
             # zero the parameter gradients
             optimizer.zero_grad()
@@ -66,16 +68,14 @@ def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_ep
             print('[%d, %5d] loss: %.3f' %
                     (epoch + 1, i + 1, running_loss / 2000))
             running_loss += loss.item()
-            if i % 2000 == 1999:    # print every 2000 mini-batches
-                print('[%d, %5d] loss: %.3f' %
-                    (epoch + 1, i + 1, running_loss / 2000))
-                running_loss = 0.0
         
         correct = 0
         total = 0
         with torch.no_grad():
             for data in testloader:
                 images, labels = data
+                images = images.to(device)
+                labels = labels.to(device)
                 outputs = net(images)
                 _, predicted = torch.max(outputs.data, 1)
                 total += labels.size(0)
