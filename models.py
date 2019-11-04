@@ -50,10 +50,8 @@ class DCNN(nn.Module):
         return x
 
 class SDL(nn.Module):
-    def __init__(self, dcnn1, dcnn2):
+    def __init__(self):
         super(SDL, self).__init__()
-        self.dcnn1 = dcnn1
-        self.dcnn2 = dcnn2
 
         self.layer1 = nn.Linear(32, 16)
         self.layer2 = nn.Linear(16, 4)
