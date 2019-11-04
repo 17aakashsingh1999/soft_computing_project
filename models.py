@@ -9,9 +9,7 @@ class DCNN(nn.Module):
     def __init__(self):
         super(DCNN, self).__init__()
         self.net = resnet18(pretrained=True)
-
-        for param in self.net.parameters():
-            param.require_grad = False
+        
         num_ftrs = self.net.fc.in_features
         self.net.fc = nn.Linear(num_ftrs, 256)
 
@@ -19,6 +17,22 @@ class DCNN(nn.Module):
         self.layer2 = nn.Linear(128, 64)
         self.layer3 = nn.Linear(64, 16)
         self.fc     = nn.Linear(16, 2)
+
+    def freeze_complete(self):
+        for param in self.parameters():
+            param.require_grad = False
+    
+    def unfreeze_complete(self):
+        for param in self.parameters():
+            param.requires_grad = True
+
+    def freeze_resnet(self):
+        for param in self.net.parameters():
+            param.requires_grad = False
+    
+    def unfreeze_resnet(self):
+        for param in self.net.parameters():
+            param.requires_grad = True
 
     def forward(self, x):
         x = F.relu(self.net(x))
@@ -44,14 +58,33 @@ class SDL(nn.Module):
         self.layer1 = nn.Linear(32, 16)
         self.layer2 = nn.Linear(16, 4)
         self.fc     = nn.Linear(4, 2)
+    
+    def load_dcnn(self, dcnn1, dcnn2):
+        self.set_dcnn1(dcnn1)
+        self.set_dcnn2(dcnn2)
+    
+    def unload_dcnn(self):
+        del self.dcnn1
+        del self.dcnn2
 
+    def set_dcnn1(self, dcnn1):
+        self.dcnn1 = dcnn1
+    
+    def set_dcnn2(self, dcnn2):
+        self.dcnn2 = dcnn2
+
+    def get_dcnn1(self):
+        return self.dcnn1
+    
+    def get_dcnn2(self):
+        return self.dcnn2
+    
     def forward(self, x1, x2):
         x1 = self.dcnn1.forward_extracted_features(x1)
         x2 = self.dcnn2.forward_extracted_features(x2)
 
         x = torch.cat((x1, x2), dim=1).reshape((-1, 32))
-        # x = torch.rand((1,32)).to(device)
-        print('hello', x1.shape, x2.shape, x.shape)
+        
         x = F.relu(self.layer1(x))
         x = F.relu(self.layer2(x))
         x = F.softmax(self.fc(x))
