@@ -100,7 +100,7 @@ def main():
 
     elif inp == 6:
         net = DCNN().to(device)
-        net.load_state_dict(torch.load('trained_models/SDL_DCNN1'))
+        net.load_state_dict(torch.load('trained_models/DCNN1_finetuned'))
 
         data = load_dataset()
 
