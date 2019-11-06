@@ -185,7 +185,7 @@ def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epo
 
             net.unload_dcnn()
 
-            torch.save(net.state_dict(), 'trained_models/SDL_partial')
+            torch.save(net.state_dict(), 'trained_models/SDL_complete')
             torch.save(dcnn1.state_dict(), 'trained_models/SDL_DCNN1')
             torch.save(dcnn2.state_dict(), 'trained_models/SDL_DCNN2')
             
