@@ -1,0 +1,11 @@
+Enter choice:
+1. train DCNN new layers
+2. train DCNN complete
+3. train SDL layers
+4. train SDL + DCNN
+5. train and finetune DCNN
+6. predict
+using device cuda
+/content/soft_computing_project/models.py:47: UserWarning: Implicit dimension choice for softmax has been deprecated. Change the call to include dim=X as an argument.
+  x = F.softmax(self.fc(x))
+Accuracy of the network: 92 %
