@@ -85,8 +85,6 @@ class SDL(nn.Module):
 
         x = torch.cat((x1, x2), dim=1).reshape((-1, 32))
         
-        x = F.relu(self.layer1(x))
-        x = F.relu(self.layer2(x))
         x = F.softmax(self.fc(x))
         return x
 
