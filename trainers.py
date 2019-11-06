@@ -4,51 +4,9 @@ from models import DCNN, SDL
 from utils import create_sdl_dataset, device
 
 def train_DCNN_partial(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+    best_score = 0
     net.freeze_resnet()
     for epoch in range(n_epochs):  # loop over the dataset multiple times
-        running_loss = 0.0
-        for i, data in enumerate(trainloader, 0):
-            # get the inputs; data is a list of [inputs, labels]
-            inputs, labels = data
-
-            # zero the parameter gradients
-            optimizer.zero_grad()
-
-            # forward + backward + optimize
-            outputs = net(inputs)
-            loss = criterion(outputs, labels)
-            loss.backward()
-            optimizer.step()
-
-            # print statistics
-            running_loss += loss.item()
-            if i % 2000 == 1999:    # print every 2000 mini-batches
-                print('[%d, %5d] loss: %.3f' %
-                    (epoch + 1, i + 1, running_loss / 2000))
-                running_loss = 0.0
-        
-        correct = 0
-        total = 0
-        with torch.no_grad():
-            for data in testloader:
-                images, labels = data
-                outputs = net(images)
-                _, predicted = torch.max(outputs.data, 1)
-                total += labels.size(0)
-                correct += (predicted == labels).sum().item()
-
-        print('Accuracy of the network: %d %%' % (
-            100 * correct / total))
-
-    print('Finished Training')
-    net.unfreeze_resnet()
-
-
-def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
-    print('inside trainer')
-    for epoch in range(n_epochs):  # loop over the dataset multiple times
-        print('epoch', epoch)
-        running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs, labels = data
@@ -65,9 +23,7 @@ def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_ep
             optimizer.step()
 
             # print statistics
-            print('[%d, %5d] loss: %.3f' %
-                    (epoch + 1, i + 1, running_loss / 2000))
-            running_loss += loss.item()
+            print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, loss.item()))
         
         correct = 0
         total = 0
@@ -81,22 +37,65 @@ def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_ep
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
 
-        print('Accuracy of the network: %d %%' % (
-            100 * correct / total))
+        if correct > best_score:
+            torch.save(net.state_dict(), 'trained_models/DCNN_partial')
+            best_score = correct
+    
+        print('Accuracy of the network: %d %%' % (100 * correct / total))
 
-    print('Finished Training')
+    net.unfreeze_resnet()
+
+
+def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+    print('inside trainer')
+    for epoch in range(n_epochs):  # loop over the dataset multiple times
+        print('epoch', epoch)
+        for i, data in enumerate(trainloader, 0):
+            # get the inputs; data is a list of [inputs, labels]
+            inputs, labels = data
+            inputs = inputs.to(device)
+            labels = labels.to(device)
+
+            # zero the parameter gradients
+            optimizer.zero_grad()
+
+            # forward + backward + optimize
+            outputs = net(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            # print statistics
+            print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, loss.item()))
+        
+        correct = 0
+        total = 0
+        with torch.no_grad():
+            for data in testloader:
+                images, labels = data
+                images = images.to(device)
+                labels = labels.to(device)
+                outputs = net(images)
+                _, predicted = torch.max(outputs.data, 1)
+                total += labels.size(0)
+                correct += (predicted == labels).sum().item()
+
+        print('Accuracy of the network: %d %%' % (100 * correct / total))
 
 def train_SDL_partial(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
     net.dcnn1.freeze_complete()
     net.dcnn2.freeze_complete()
 
     trainloader = create_sdl_dataset(trainloader)
+    testloader = create_sdl_dataset(testloader)
 
     for epoch in range(n_epochs):  # loop over the dataset multiple times
-        running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs1, inputs2, labels = data
+            inputs1 = inputs1.to(device)
+            inputs2 = inputs2.to(device)
+            labels = labels.to(device)
 
             # zero the parameter gradients
             optimizer.zero_grad()
@@ -108,37 +107,36 @@ def train_SDL_partial(net, trainloader, testloader, optimizer, criterion, n_epoc
             optimizer.step()
 
             # print statistics
-            running_loss += loss.item()
-            if i % 2000 == 1999:    # print every 2000 mini-batches
-                print('[%d, %5d] loss: %.3f' %
-                    (epoch + 1, i + 1, running_loss / 2000))
-                running_loss = 0.0
+            print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, loss.item()))
         correct = 0
         total = 0
         with torch.no_grad():
             for data in testloader:
-                images, labels = data
-                outputs = net(images)
+                images1, images2, labels = data
+                images1 = images1.to(device)
+                images2 = images2.to(device)
+                labels = labels.to(device)
+                outputs = net(images1, images2)
                 _, predicted = torch.max(outputs.data, 1)
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
 
-        print('Accuracy of the network: %d %%' % (
-            100 * correct / total))
+        print('Accuracy of the network: %d %%' % (100 * correct / total))
     
     net.dcnn1.unfreeze_complete()
     net.dcnn2.unfreeze_complete()
 
-    print('Finished Training')
-
 def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
     trainloader = create_sdl_dataset(trainloader)
+    testloader = create_sdl_dataset(testloader)
 
     for epoch in range(n_epochs):  # loop over the dataset multiple times
-        running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
             # get the inputs; data is a list of [inputs, labels]
             inputs1, inputs2, labels = data
+            inputs1 = inputs1.to(device)
+            inputs2 = inputs2.to(device)
+            labels = labels.to(device)
 
             # zero the parameter gradients
             optimizer.zero_grad()
@@ -150,23 +148,20 @@ def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epo
             optimizer.step()
 
             # print statistics
-            running_loss += loss.item()
-            if i % 2000 == 1999:    # print every 2000 mini-batches
-                print('[%d, %5d] loss: %.3f' %
-                    (epoch + 1, i + 1, running_loss / 2000))
-                running_loss = 0.0
+            print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, loss.item()))
 
         correct = 0
         total = 0
         with torch.no_grad():
             for data in testloader:
-                images, labels = data
-                outputs = net(images)
+                images1, images2, labels = data
+                images1= images1.to(device)
+                images2 = images2.to(device)
+                labels = labels.to(device)
+                outputs = net(images1, images2)
                 _, predicted = torch.max(outputs.data, 1)
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
 
         print('Accuracy of the network: %d %%' % (
             100 * correct / total))
-
-    print('Finished Training')

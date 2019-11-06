@@ -90,9 +90,9 @@ class SDL(nn.Module):
 
 
 
-
-
 if __name__ == "__main__":
     summary(DCNN().to(device), input_size=(3, 224, 224))
     summary(resnet18(pretrained=True).to(device), input_size=(3, 224, 224))
-    summary(SDL(DCNN(), DCNN()).to(device), input_size=[(3, 224, 224), (3, 224, 224)])
+    sdl = SDL()
+    sdl.load_dcnn(DCNN(), DCNN())
+    summary(sdl.to(device), input_size=[(3, 224, 224), (3, 224, 224)])
