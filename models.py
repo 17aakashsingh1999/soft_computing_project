@@ -34,6 +34,11 @@ class DCNN(nn.Module):
         for param in self.net.parameters():
             param.requires_grad = True
 
+    def freeze_except_last(self):
+        self.freeze_complete();
+        for param in self.fc.parameters():
+            param.requires_grad = True
+
     def forward(self, x):
         x = F.relu(self.net(x))
         x = F.relu(self.layer1(x))

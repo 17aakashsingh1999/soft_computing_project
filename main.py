@@ -74,8 +74,26 @@ def main():
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
         train_SDL_complete(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion)
     elif inp == 5:
-        # predict
-        pass
+        net = DCNN().to(device)
+        net.load_state_dict(torch.load('trained_models/SDL_DCNN1'))
+
+        data = load_dataset()
+
+        testloader = data['test']
+        total = 0
+        correct = 0
+        with torch.no_grad():
+            for data in testloader:
+                images, labels = data
+                images = images.to(device)
+                labels = labels.to(device)
+                outputs = net(images)
+                _, predicted = torch.max(outputs.data, 1)
+                total += labels.size(0)
+                correct += (predicted == labels).sum().item()
+
+        print('Accuracy of the network: %d %%' % (100 * correct / total))
+
     else:
         print('wrong input')
 

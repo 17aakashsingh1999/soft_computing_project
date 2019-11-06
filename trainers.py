@@ -194,3 +194,45 @@ def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epo
 
         print('Accuracy of the network: %d %%' % (
             100 * correct / total))
+
+def train_DCNN_tuned(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+    net.freeze_except_last()
+    best_score = 0
+    for epoch in range(n_epochs):  # loop over the dataset multiple times
+        print('epoch', epoch)
+        for i, data in enumerate(trainloader, 0):
+            # get the inputs; data is a list of [inputs, labels]
+            inputs, labels = data
+            inputs = inputs.to(device)
+            labels = labels.to(device)
+
+            # zero the parameter gradients
+            optimizer.zero_grad()
+
+            # forward + backward + optimize
+            outputs = net(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+
+            # print statistics
+            print('[%d, %5d] loss: %.3f' % (epoch + 1, i + 1, loss.item()))
+        
+        correct = 0
+        total = 0
+        with torch.no_grad():
+            for data in testloader:
+                images, labels = data
+                images = images.to(device)
+                labels = labels.to(device)
+                outputs = net(images)
+                _, predicted = torch.max(outputs.data, 1)
+                total += labels.size(0)
+                correct += (predicted == labels).sum().item()
+
+        if correct > best_score:
+            torch.save(net.state_dict(), 'trained_models/DCNN_tuned')
+            best_score = correct
+        
+        print('Accuracy of the network: %d %%' % (100 * correct / total))
+    net.unfreeze_complete()
