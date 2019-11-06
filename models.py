@@ -57,10 +57,7 @@ class DCNN(nn.Module):
 class SDL(nn.Module):
     def __init__(self):
         super(SDL, self).__init__()
-
-        self.layer1 = nn.Linear(32, 16)
-        self.layer2 = nn.Linear(16, 4)
-        self.fc     = nn.Linear(4, 2)
+        self.fc     = nn.Linear(32, 2)
     
     def load_dcnn(self, dcnn1, dcnn2):
         self.set_dcnn1(dcnn1)

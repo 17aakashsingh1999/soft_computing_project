@@ -43,7 +43,7 @@ def imshow(inp, title=None):
         plt.title(title)
     plt.pause(100)  # pause a bit so that plots are updated
 
-def create_sdl_dataset(dataloader, n_batches=16):
+def create_sdl_dataset(dataloader, n_batches=32):
     images = []
     labels = []
     for data in dataloader:
