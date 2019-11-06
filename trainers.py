@@ -195,7 +195,7 @@ def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epo
         print('Accuracy of the network: %d %%' % (
             100 * correct / total))
 
-def train_DCNN_tuned(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+def train_DCNN_finetune(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
     net.freeze_except_last()
     best_score = 0
     for epoch in range(n_epochs):  # loop over the dataset multiple times

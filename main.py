@@ -6,7 +6,7 @@ import torch.optim as optim
 from torch import nn
 
 def main():
-    inp = int(input('Enter choice:\n1. train DCNN new layers\n2. train DCNN complete\n3. train SDL layers\n4. train SDL + DCNN\n5. predict\n'))
+    inp = int(input('Enter choice:\n1. train DCNN new layers\n2. train DCNN complete\n3. train SDL layers\n4. train SDL + DCNN\n5. train and finetune DCNN\n6. predict\n'))
     print('using device', device)
     try:
         mkdir('trained_models')
@@ -74,6 +74,18 @@ def main():
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
         train_SDL_complete(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion)
     elif inp == 5:
+        # fine tuning model
+        net = DCNN().to(device)
+        net.load_state_dict(torch.load('trained_models/DCNN_partial'))
+
+        data = load_dataset()
+
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+        
+        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion)
+        print('training complete')
+    elif inp == 6:
         net = DCNN().to(device)
         net.load_state_dict(torch.load('trained_models/SDL_DCNN1'))
 
