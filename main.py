@@ -76,15 +76,28 @@ def main():
     elif inp == 5:
         # fine tuning model
         net = DCNN().to(device)
-        net.load_state_dict(torch.load('trained_models/DCNN_partial'))
+        net.load_state_dict(torch.load('trained_models/SDL_DCNN1'))
 
         data = load_dataset()
 
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
         
-        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion)
-        print('training complete')
+        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name='DCNN1_finetuned')
+        print('training complete for dcnn1')
+        
+        net = DCNN().to(device)
+
+        net.load_state_dict(torch.load('trained_models/SDL_DCNN2'))
+
+        data = load_dataset()
+
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+        
+        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name="DCNN2_finetuned")
+        print('training complete for dcnn2')
+
     elif inp == 6:
         net = DCNN().to(device)
         net.load_state_dict(torch.load('trained_models/SDL_DCNN1'))
