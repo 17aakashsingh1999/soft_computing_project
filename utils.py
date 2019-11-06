@@ -4,7 +4,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 import os
 from random import randint
-
+ 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 class_names = ['benign', 'malignant']
@@ -55,7 +55,7 @@ def create_sdl_dataset(dataloader, n_batches=16):
     n_images = len(images)
 
     batches = []
-    for i in range(n_batches):
+    for _ in range(n_batches):
         img1_list = []
         img2_list = []
         labels_list = []
@@ -66,7 +66,7 @@ def create_sdl_dataset(dataloader, n_batches=16):
             img1_list.append(images[img1_idx])
             img2_list.append(images[img2_idx])
             labels_list.append(1 if labels[img1_idx] == labels[img2_idx] else 0)
-        batches.append((torch.tensor(img1_list), torch.tensor(img2_list), torch.tensor(labels_list)))
+        batches.append((torch.stack(img1_list), torch.stack(img2_list), torch.tensor(labels_list)))
     return batches
 
 

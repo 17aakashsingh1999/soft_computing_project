@@ -47,7 +47,7 @@ def train_DCNN_partial(net, trainloader, testloader, optimizer, criterion, n_epo
 
 
 def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
-    print('inside trainer')
+    best_score = 0
     for epoch in range(n_epochs):  # loop over the dataset multiple times
         print('epoch', epoch)
         for i, data in enumerate(trainloader, 0):
@@ -80,9 +80,14 @@ def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_ep
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
 
+        if correct > best_score:
+            torch.save(net.state_dict(), 'trained_models/DCNN_complete')
+            best_score = correct
+        
         print('Accuracy of the network: %d %%' % (100 * correct / total))
 
 def train_SDL_partial(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+    best_score = 0
     net.dcnn1.freeze_complete()
     net.dcnn2.freeze_complete()
 
@@ -121,12 +126,23 @@ def train_SDL_partial(net, trainloader, testloader, optimizer, criterion, n_epoc
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
 
+        if correct > best_score:
+            dcnn1 = net.get_dcnn1()
+            dcnn2 = net.get_dcnn2()
+
+            net.unload_dcnn()
+            torch.save(net.state_dict(), 'trained_models/SDL_partial')
+
+            net.load_dcnn(dcnn1, dcnn2)
+            best_score = correct
+
         print('Accuracy of the network: %d %%' % (100 * correct / total))
     
     net.dcnn1.unfreeze_complete()
     net.dcnn2.unfreeze_complete()
 
 def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+    best_score = 0
     trainloader = create_sdl_dataset(trainloader)
     testloader = create_sdl_dataset(testloader)
 
@@ -162,6 +178,19 @@ def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epo
                 _, predicted = torch.max(outputs.data, 1)
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
+
+        if correct > best_score:
+            dcnn1 = net.get_dcnn1()
+            dcnn2 = net.get_dcnn2()
+
+            net.unload_dcnn()
+
+            torch.save(net.state_dict(), 'trained_models/SDL_partial')
+            torch.save(dcnn1.state_dict(), 'trained_models/SDL_DCNN1')
+            torch.save(dcnn2.state_dict(), 'trained_models/SDL_DCNN2')
+            
+            net.load_dcnn(dcnn1, dcnn2)
+            best_score = correct
 
         print('Accuracy of the network: %d %%' % (
             100 * correct / total))
