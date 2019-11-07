@@ -35,7 +35,7 @@ class DCNN(nn.Module):
             param.requires_grad = True
 
     def freeze_except_last(self):
-        self.freeze_complete();
+        self.freeze_complete()
         for param in self.fc.parameters():
             param.requires_grad = True
 
@@ -57,7 +57,8 @@ class DCNN(nn.Module):
 class SDL(nn.Module):
     def __init__(self):
         super(SDL, self).__init__()
-        self.fc     = nn.Linear(32, 2)
+        self.layer1 = nn.Linear(32, 8)
+        self.fc     = nn.Linear(8, 2)
     
     def load_dcnn(self, dcnn1, dcnn2):
         self.set_dcnn1(dcnn1)
@@ -84,7 +85,7 @@ class SDL(nn.Module):
         x2 = self.dcnn2.forward_extracted_features(x2)
 
         x = torch.cat((x1, x2), dim=1).reshape((-1, 32))
-        
+        x = F.relu(self.layer1(x))
         x = F.softmax(self.fc(x))
         return x
 

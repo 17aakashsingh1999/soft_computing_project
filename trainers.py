@@ -3,7 +3,7 @@ from models import DCNN, SDL
 
 from utils import create_sdl_dataset, device
 
-def train_DCNN_partial(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+def train_DCNN_partial(net, trainloader, testloader, optimizer, criterion, n_epochs=50):
     best_score = 0
     net.freeze_resnet()
     for epoch in range(n_epochs):  # loop over the dataset multiple times
@@ -46,7 +46,7 @@ def train_DCNN_partial(net, trainloader, testloader, optimizer, criterion, n_epo
     net.unfreeze_resnet()
 
 
-def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=50):
     best_score = 0
     for epoch in range(n_epochs):  # loop over the dataset multiple times
         print('epoch', epoch)
@@ -86,7 +86,7 @@ def train_DCNN_complete(net, trainloader, testloader, optimizer, criterion, n_ep
         
         print('Accuracy of the network: %d %%' % (100 * correct / total))
 
-def train_SDL_partial(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+def train_SDL_partial(net, trainloader, testloader, optimizer, criterion, n_epochs=50):
     best_score = 0
     net.dcnn1.freeze_complete()
     net.dcnn2.freeze_complete()
@@ -141,7 +141,7 @@ def train_SDL_partial(net, trainloader, testloader, optimizer, criterion, n_epoc
     net.dcnn1.unfreeze_complete()
     net.dcnn2.unfreeze_complete()
 
-def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=100):
+def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epochs=50):
     best_score = 0
     trainloader = create_sdl_dataset(trainloader)
     testloader = create_sdl_dataset(testloader)
@@ -195,7 +195,7 @@ def train_SDL_complete(net, trainloader, testloader, optimizer, criterion, n_epo
         print('Accuracy of the network: %d %%' % (
             100 * correct / total))
 
-def train_DCNN_finetune(net, trainloader, testloader, optimizer, criterion, name, n_epochs=100):
+def train_DCNN_finetune(net, trainloader, testloader, optimizer, criterion, name, n_epochs=50):
     net.freeze_except_last()
     best_score = 0
     for epoch in range(n_epochs):  # loop over the dataset multiple times
