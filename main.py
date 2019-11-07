@@ -14,17 +14,19 @@ def main():
         pass
     if inp == 1:
         # train DCNN new layers
+        print("1 selected")
         net = DCNN().to(device)
         data = load_dataset()
 
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
         
-        train_DCNN_partial(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion)
+        train_DCNN_partial(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, n_epochs=100)
         print('training complete')
 
     elif inp == 2:
         # train DCNN complete
+        print("2 selected")
         net = DCNN().to(device)
         net.load_state_dict(torch.load('trained_models/DCNN_partial'))
 
@@ -33,11 +35,12 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
         
-        train_DCNN_complete(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion)
+        train_DCNN_complete(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, n_epochs=100)
         print('training complete')
 
     elif inp == 3:
         # train SDL layers
+        print("3 selected")
         dcnn1 = DCNN()
         dcnn2 = DCNN()
         
@@ -52,10 +55,11 @@ def main():
 
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
-        train_SDL_partial(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion)
+        train_SDL_partial(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, n_epochs=100)
         print('training complete')
     elif inp == 4:
         # train SDL + DCNN
+        print("4 selected")
         dcnn1 = DCNN()
         dcnn2 = DCNN()
         
@@ -72,9 +76,10 @@ def main():
 
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
-        train_SDL_complete(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion)
+        train_SDL_complete(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, n_epochs=100)
     elif inp == 5:
         # fine tuning model
+        print("5 selected")
         net = DCNN().to(device)
         net.load_state_dict(torch.load('trained_models/SDL_DCNN1'))
 
@@ -83,7 +88,7 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
         
-        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name='DCNN1_finetuned')
+        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name='DCNN1_finetuned', n_epochs=50)
         print('training complete for dcnn1')
         
         net = DCNN().to(device)
@@ -95,10 +100,11 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
         
-        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name="DCNN2_finetuned")
+        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name="DCNN2_finetuned", n_epochs=50)
         print('training complete for dcnn2')
 
     elif inp == 6:
+        print("6 selected")
         net = DCNN().to(device)
         net.load_state_dict(torch.load('trained_models/DCNN1_finetuned'))
 
