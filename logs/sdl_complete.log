@@ -3211,7 +3211,7 @@ Accuracy of the network: 79 %
 [97,    30] loss: 0.355
 [97,    31] loss: 0.326
 [97,    32] loss: 0.324
-Accuracy of the network: 79 %
+Accuracy of the network: 81 %
 [98,     1] loss: 0.322
 [98,     2] loss: 0.322
 [98,     3] loss: 0.337
@@ -3244,7 +3244,7 @@ Accuracy of the network: 79 %
 [98,    30] loss: 0.355
 [98,    31] loss: 0.326
 [98,    32] loss: 0.324
-Accuracy of the network: 79 %
+Accuracy of the network: 81 %
 [99,     1] loss: 0.322
 [99,     2] loss: 0.322
 [99,     3] loss: 0.337
@@ -3277,7 +3277,7 @@ Accuracy of the network: 79 %
 [99,    30] loss: 0.354
 [99,    31] loss: 0.326
 [99,    32] loss: 0.324
-Accuracy of the network: 79 %
+Accuracy of the network: 81 %
 [100,     1] loss: 0.321
 [100,     2] loss: 0.321
 [100,     3] loss: 0.337
@@ -3310,5 +3310,5 @@ Accuracy of the network: 79 %
 [100,    30] loss: 0.354
 [100,    31] loss: 0.326
 [100,    32] loss: 0.324
-Accuracy of the network: 79 %
+Accuracy of the network: 81 %
 

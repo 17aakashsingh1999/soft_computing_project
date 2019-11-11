@@ -213,7 +213,7 @@ epoch 6
 [7,    25] loss: 0.366
 [7,    26] loss: 0.399
 [7,    27] loss: 0.382
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 7
 [8,     1] loss: 0.339
 [8,     2] loss: 0.385
@@ -329,7 +329,7 @@ epoch 10
 [11,    25] loss: 0.349
 [11,    26] loss: 0.379
 [11,    27] loss: 0.327
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 11
 [12,     1] loss: 0.343
 [12,     2] loss: 0.321
@@ -387,7 +387,7 @@ epoch 12
 [13,    25] loss: 0.350
 [13,    26] loss: 0.320
 [13,    27] loss: 0.349
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 13
 [14,     1] loss: 0.334
 [14,     2] loss: 0.319
@@ -503,7 +503,7 @@ epoch 16
 [17,    25] loss: 0.376
 [17,    26] loss: 0.363
 [17,    27] loss: 0.351
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 17
 [18,     1] loss: 0.331
 [18,     2] loss: 0.337
@@ -532,7 +532,7 @@ epoch 17
 [18,    25] loss: 0.339
 [18,    26] loss: 0.329
 [18,    27] loss: 0.343
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 18
 [19,     1] loss: 0.334
 [19,     2] loss: 0.316
@@ -619,7 +619,7 @@ epoch 20
 [21,    25] loss: 0.346
 [21,    26] loss: 0.346
 [21,    27] loss: 0.318
-Accuracy of the network: 91 %
+Accuracy of the network: 89 %
 epoch 21
 [22,     1] loss: 0.330
 [22,     2] loss: 0.316
@@ -735,7 +735,7 @@ epoch 24
 [25,    25] loss: 0.315
 [25,    26] loss: 0.330
 [25,    27] loss: 0.316
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 25
 [26,     1] loss: 0.315
 [26,     2] loss: 0.319
@@ -764,7 +764,7 @@ epoch 25
 [26,    25] loss: 0.319
 [26,    26] loss: 0.324
 [26,    27] loss: 0.397
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 26
 [27,     1] loss: 0.330
 [27,     2] loss: 0.315
@@ -880,7 +880,7 @@ epoch 29
 [30,    25] loss: 0.314
 [30,    26] loss: 0.315
 [30,    27] loss: 0.315
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 30
 [31,     1] loss: 0.330
 [31,     2] loss: 0.331
@@ -938,7 +938,7 @@ epoch 31
 [32,    25] loss: 0.315
 [32,    26] loss: 0.332
 [32,    27] loss: 0.376
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 32
 [33,     1] loss: 0.316
 [33,     2] loss: 0.330
@@ -967,7 +967,7 @@ epoch 32
 [33,    25] loss: 0.314
 [33,    26] loss: 0.314
 [33,    27] loss: 0.342
-Accuracy of the network: 91 %
+Accuracy of the network: 89 %
 epoch 33
 [34,     1] loss: 0.330
 [34,     2] loss: 0.318
@@ -1025,7 +1025,7 @@ epoch 34
 [35,    25] loss: 0.314
 [35,    26] loss: 0.314
 [35,    27] loss: 0.342
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 35
 [36,     1] loss: 0.345
 [36,     2] loss: 0.345
@@ -1083,7 +1083,7 @@ epoch 36
 [37,    25] loss: 0.314
 [37,    26] loss: 0.314
 [37,    27] loss: 0.369
-Accuracy of the network: 91 %
+Accuracy of the network: 89 %
 epoch 37
 [38,     1] loss: 0.330
 [38,     2] loss: 0.314
@@ -1141,7 +1141,7 @@ epoch 38
 [39,    25] loss: 0.314
 [39,    26] loss: 0.316
 [39,    27] loss: 0.342
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 39
 [40,     1] loss: 0.329
 [40,     2] loss: 0.345
@@ -1170,7 +1170,7 @@ epoch 39
 [40,    25] loss: 0.314
 [40,    26] loss: 0.314
 [40,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 40
 [41,     1] loss: 0.314
 [41,     2] loss: 0.314
@@ -1199,7 +1199,7 @@ epoch 40
 [41,    25] loss: 0.345
 [41,    26] loss: 0.314
 [41,    27] loss: 0.372
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 41
 [42,     1] loss: 0.329
 [42,     2] loss: 0.329
@@ -1228,7 +1228,7 @@ epoch 41
 [42,    25] loss: 0.314
 [42,    26] loss: 0.314
 [42,    27] loss: 0.342
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 42
 [43,     1] loss: 0.329
 [43,     2] loss: 0.345
@@ -1257,7 +1257,7 @@ epoch 42
 [43,    25] loss: 0.329
 [43,    26] loss: 0.330
 [43,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 43
 [44,     1] loss: 0.329
 [44,     2] loss: 0.329
@@ -1286,7 +1286,7 @@ epoch 43
 [44,    25] loss: 0.329
 [44,    26] loss: 0.345
 [44,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 44
 [45,     1] loss: 0.314
 [45,     2] loss: 0.330
@@ -1402,7 +1402,7 @@ epoch 47
 [48,    25] loss: 0.314
 [48,    26] loss: 0.314
 [48,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 48
 [49,     1] loss: 0.314
 [49,     2] loss: 0.314
@@ -1431,7 +1431,7 @@ epoch 48
 [49,    25] loss: 0.314
 [49,    26] loss: 0.330
 [49,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 49
 [50,     1] loss: 0.314
 [50,     2] loss: 0.329
@@ -1489,7 +1489,7 @@ epoch 50
 [51,    25] loss: 0.314
 [51,    26] loss: 0.314
 [51,    27] loss: 0.341
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 51
 [52,     1] loss: 0.314
 [52,     2] loss: 0.314
@@ -1547,7 +1547,7 @@ epoch 52
 [53,    25] loss: 0.329
 [53,    26] loss: 0.319
 [53,    27] loss: 0.341
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 53
 [54,     1] loss: 0.314
 [54,     2] loss: 0.314
@@ -1634,7 +1634,7 @@ epoch 55
 [56,    25] loss: 0.314
 [56,    26] loss: 0.314
 [56,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 56
 [57,     1] loss: 0.313
 [57,     2] loss: 0.329
@@ -1663,7 +1663,7 @@ epoch 56
 [57,    25] loss: 0.314
 [57,    26] loss: 0.314
 [57,    27] loss: 0.341
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 57
 [58,     1] loss: 0.329
 [58,     2] loss: 0.314
@@ -1779,7 +1779,7 @@ epoch 60
 [61,    25] loss: 0.314
 [61,    26] loss: 0.313
 [61,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 61
 [62,     1] loss: 0.345
 [62,     2] loss: 0.314
@@ -1808,7 +1808,7 @@ epoch 61
 [62,    25] loss: 0.329
 [62,    26] loss: 0.314
 [62,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 62
 [63,     1] loss: 0.314
 [63,     2] loss: 0.314
@@ -1837,7 +1837,7 @@ epoch 62
 [63,    25] loss: 0.329
 [63,    26] loss: 0.345
 [63,    27] loss: 0.342
-Accuracy of the network: 91 %
+Accuracy of the network: 89 %
 epoch 63
 [64,     1] loss: 0.329
 [64,     2] loss: 0.330
@@ -1866,7 +1866,7 @@ epoch 63
 [64,    25] loss: 0.314
 [64,    26] loss: 0.314
 [64,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 64
 [65,     1] loss: 0.329
 [65,     2] loss: 0.314
@@ -1895,7 +1895,7 @@ epoch 64
 [65,    25] loss: 0.314
 [65,    26] loss: 0.345
 [65,    27] loss: 0.342
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 65
 [66,     1] loss: 0.329
 [66,     2] loss: 0.329
@@ -2011,7 +2011,7 @@ epoch 68
 [69,    25] loss: 0.314
 [69,    26] loss: 0.313
 [69,    27] loss: 0.314
-Accuracy of the network: 91 %
+Accuracy of the network: 89 %
 epoch 69
 [70,     1] loss: 0.329
 [70,     2] loss: 0.345
@@ -2040,7 +2040,7 @@ epoch 69
 [70,    25] loss: 0.314
 [70,    26] loss: 0.329
 [70,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 70
 [71,     1] loss: 0.314
 [71,     2] loss: 0.329
@@ -2098,7 +2098,7 @@ epoch 71
 [72,    25] loss: 0.314
 [72,    26] loss: 0.329
 [72,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 72
 [73,     1] loss: 0.329
 [73,     2] loss: 0.314
@@ -2127,7 +2127,7 @@ epoch 72
 [73,    25] loss: 0.329
 [73,    26] loss: 0.314
 [73,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 73
 [74,     1] loss: 0.314
 [74,     2] loss: 0.329
@@ -2156,7 +2156,7 @@ epoch 73
 [74,    25] loss: 0.345
 [74,    26] loss: 0.329
 [74,    27] loss: 0.369
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 74
 [75,     1] loss: 0.329
 [75,     2] loss: 0.314
@@ -2214,7 +2214,7 @@ epoch 75
 [76,    25] loss: 0.314
 [76,    26] loss: 0.331
 [76,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 76
 [77,     1] loss: 0.330
 [77,     2] loss: 0.314
@@ -2388,7 +2388,7 @@ epoch 81
 [82,    25] loss: 0.313
 [82,    26] loss: 0.314
 [82,    27] loss: 0.342
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 82
 [83,     1] loss: 0.329
 [83,     2] loss: 0.314
@@ -2417,7 +2417,7 @@ epoch 82
 [83,    25] loss: 0.329
 [83,    26] loss: 0.313
 [83,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 83
 [84,     1] loss: 0.329
 [84,     2] loss: 0.314
@@ -2475,7 +2475,7 @@ epoch 84
 [85,    25] loss: 0.313
 [85,    26] loss: 0.329
 [85,    27] loss: 0.313
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 85
 [86,     1] loss: 0.330
 [86,     2] loss: 0.330
@@ -2504,7 +2504,7 @@ epoch 85
 [86,    25] loss: 0.313
 [86,    26] loss: 0.314
 [86,    27] loss: 0.314
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 86
 [87,     1] loss: 0.345
 [87,     2] loss: 0.323
@@ -2533,7 +2533,7 @@ epoch 86
 [87,    25] loss: 0.313
 [87,    26] loss: 0.316
 [87,    27] loss: 0.369
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 87
 [88,     1] loss: 0.315
 [88,     2] loss: 0.313
@@ -2562,7 +2562,7 @@ epoch 87
 [88,    25] loss: 0.314
 [88,    26] loss: 0.329
 [88,    27] loss: 0.316
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 88
 [89,     1] loss: 0.345
 [89,     2] loss: 0.329
@@ -2591,7 +2591,7 @@ epoch 88
 [89,    25] loss: 0.313
 [89,    26] loss: 0.313
 [89,    27] loss: 0.339
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 89
 [90,     1] loss: 0.315
 [90,     2] loss: 0.314
@@ -2620,7 +2620,7 @@ epoch 89
 [90,    25] loss: 0.313
 [90,    26] loss: 0.329
 [90,    27] loss: 0.315
-Accuracy of the network: 91 %
+Accuracy of the network: 89 %
 epoch 90
 [91,     1] loss: 0.329
 [91,     2] loss: 0.329
@@ -2823,7 +2823,7 @@ epoch 96
 [97,    25] loss: 0.329
 [97,    26] loss: 0.313
 [97,    27] loss: 0.341
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 97
 [98,     1] loss: 0.314
 [98,     2] loss: 0.313
@@ -2881,7 +2881,7 @@ epoch 98
 [99,    25] loss: 0.313
 [99,    26] loss: 0.313
 [99,    27] loss: 0.313
-Accuracy of the network: 90 %
+Accuracy of the network: 89 %
 epoch 99
 [100,     1] loss: 0.313
 [100,     2] loss: 0.313
@@ -2910,6 +2910,6 @@ epoch 99
 [100,    25] loss: 0.313
 [100,    26] loss: 0.329
 [100,    27] loss: 0.313
-Accuracy of the network: 91 %
+Accuracy of the network: 89 %
 training complete
 
