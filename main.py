@@ -88,7 +88,7 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
         
-        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name='DCNN1_finetuned', n_epochs=50)
+        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name='DCNN1_finetuned', n_epochs=100)
         print('training complete for dcnn1')
         
         net = DCNN().to(device)
@@ -100,26 +100,33 @@ def main():
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
         
-        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name="DCNN2_finetuned", n_epochs=50)
+        train_DCNN_finetune(net=net, trainloader=data['train'], testloader=data['test'], optimizer=optimizer, criterion=criterion, name="DCNN2_finetuned", n_epochs=100)
         print('training complete for dcnn2')
 
     elif inp == 6:
         print("6 selected")
         net = DCNN().to(device)
+        net.eval()
         net.load_state_dict(torch.load('trained_models/DCNN1_finetuned'))
+        # net.load_state_dict(torch.load('trained_models/DCNN_complete'))
 
         data = load_dataset()
+        data1 = load_dataset()
+        [print(i[0].shape, j[0].shape) for i, j in zip(data['test'], data1['test'])]
 
         testloader = data['test']
         total = 0
         correct = 0
+        confusion_matrix = [([0, 0]).copy() for _ in range(2)]
         with torch.no_grad():
             for data in testloader:
                 images, labels = data
                 images = images.to(device)
                 labels = labels.to(device)
                 outputs = net(images)
+                print(outputs)
                 _, predicted = torch.max(outputs.data, 1)
+                print('predicted', predicted)
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
 
