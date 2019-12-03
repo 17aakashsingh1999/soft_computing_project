@@ -107,12 +107,10 @@ def main():
         print("6 selected")
         net = DCNN().to(device)
         net.eval()
-        net.load_state_dict(torch.load('trained_models/DCNN1_finetuned'))
+        net.load_state_dict(torch.load('trained_models/DCNN2_finetuned'))
         # net.load_state_dict(torch.load('trained_models/DCNN_complete'))
 
         data = load_dataset()
-        data1 = load_dataset()
-        [print(i[0].shape, j[0].shape) for i, j in zip(data['test'], data1['test'])]
 
         testloader = data['test']
         total = 0
@@ -124,13 +122,14 @@ def main():
                 images = images.to(device)
                 labels = labels.to(device)
                 outputs = net(images)
-                print(outputs)
                 _, predicted = torch.max(outputs.data, 1)
-                print('predicted', predicted)
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
+                for x, y in zip(labels, predicted):
+                    confusion_matrix[x][y] += 1
 
         print('Accuracy of the network: %d %%' % (100 * correct / total))
+        print('Confusion matrix', confusion_matrix)
 
     else:
         print('wrong input')
